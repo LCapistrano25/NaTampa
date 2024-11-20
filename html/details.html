@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Receita</title>
+  <link rel="stylesheet" href="/css/details.css">
+</head>
+<body>
+  <div id="recipe-container" class="modal hidden">
+    <div class="modal-content">
+      <button class="close-button" onclick="closeModal()">×</button>
+      <h1 id="recipe-title"></h1>
+      <hr>
+      <div class="recipe-header">
+        <img id="recipe-image" src="" alt="Imagem da receita">
+        <div>
+          <h3><strong>Descrição</strong></h3>
+          <p id="recipe-description"></p>
+          <h3><strong>Categoria:</strong> <span id="recipe-category"></span></h3>
+          <p id="recipe-description"></p>
+          <h3><strong>Origem:</strong> <span id="recipe-origin"></span></h3>
+          <p id="recipe-description"></p>
+        </div>
+      </div>
+      <div class="recipe-details">
+        <div class="ingredients">
+          <h3>Ingredientes</h3>
+          <ul id="recipe-ingredients"></ul>
+        </div>
+        <div class="preparation">
+          <h3>Modo de Preparo</h3>
+          <ol id="recipe-steps"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/javascript/details.js"></script>
+</body>
+</html>

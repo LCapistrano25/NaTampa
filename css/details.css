@@ -1,0 +1,183 @@
+/* Estilo básico */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+  }
+  
+  /* Modal */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+  }
+  
+  .modal.hidden {
+    display: none;
+  }
+  
+  .modal-content {
+    background: white;
+    border-radius: 30px 0 0 30px;
+    padding: 30px;
+    width: 90%;
+    max-width: 1000px;
+    height: 80%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow-y: auto;
+  }
+  
+  .modal-content h1 {
+    color: #FF835D;
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+  
+  .modal-content hr {
+    margin: 15px 0;
+    border: 1px solid #E9EDF7;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 60px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #FF835D;
+  }
+  
+  /* Cabeçalho da receita */
+  .recipe-header {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .recipe-header img {
+    width: 420px;
+    height: 270px;
+    object-fit: cover;
+  }
+  
+  .recipe-header h3 {
+    font-size: 20px;
+    color: #FF835D;
+  }
+  
+  .recipe-header p {
+    font-size: 15px;
+    color: #ACACAC;
+  }
+  
+  /* Detalhes gerais */
+  .recipe-details {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .recipe-details > div {
+    flex: 1;
+  }
+  
+  /* Ingredientes e preparo */
+  .ingredients, .preparation {
+    padding: 15px;
+    border: 1px solid #E9EDF7;
+    border-radius: 10px;
+    background-color: #FAFAFA;
+  }
+  
+  .ingredients h3, .preparation h3 {
+    font-size: 20px;
+    color: #FF835D;
+  }
+  
+  .ingredients ul, .preparation ol {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 15px;
+    color: #4A4A4A;
+  }
+  
+  .ingredients li, .preparation li {
+    margin-bottom: 5px;
+  }
+  
+  /* Reutilização de cores */
+  .text-primary {
+    color: #FF835D;
+  }
+  
+  .text-secondary {
+    color: #ACACAC;
+  }
+  
+  .border {
+    border: 1px solid #E9EDF7;
+  }
+  
+  .bg-light {
+    background-color: #FAFAFA;
+  }
+  
+  /* Adicionando responsividade */
+  @media (max-width: 800px) {
+    .recipe-header {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .recipe-header img {
+      width: 100%;
+      height: auto;
+    }
+  
+    .recipe-details {
+      flex-direction: column;
+    }
+  }
+  
+  /* Personalização para navegadores baseados em Webkit (Chrome, Edge, etc.) */
+.modal-content::-webkit-scrollbar {
+    width: 10px; /* Largura da barra de rolagem */
+    height: 50px; /* Altura da barra de rolagem horizontal */
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: #FF835D; /* Cor do polegar (parte móvel) */
+    border-radius: 50px; /* Bordas arredondadas */
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: #E5673C; /* Cor ao passar o mouse */
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: #E9EDF7; /* Cor do trilho */
+    border-radius: 20px; /* Bordas arredondadas */
+}
+
+/* Personalização para navegadores que suportam scrollbar */
+.modal-content {
+    scrollbar-width: thin; 
+    scrollbar-color: #FF835D #fff; 
+}
+
+
+.modal-content::-webkit-scrollbar-button {
+    display: none; /* Remove as setas laterais */
+}

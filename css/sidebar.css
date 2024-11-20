@@ -1,0 +1,120 @@
+/* Sidebar */
+
+.sidebar div {
+    border-right: #FF835D px solid;
+}
+
+.sidebar {
+    font:  Arial, sans-serif;
+    position: fixed; /* Fixa a sidebar na tela */
+    width: 200px;
+    height: 100vh;
+    background-color: #FFFFFF;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h1 {
+    margin-bottom: 20px;
+    font-size: 30px;
+    color: #FF835D;/* Sidebar */
+    .sidebar {
+        position: fixed; /* Fixa a sidebar na tela */
+        top: 0;
+        left: 0;
+        width: 200px;  /* Largura da sidebar */
+        height: 100vh;  /* Altura completa da tela */
+        background-color: #FFFFFF;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        padding-left: 20px;
+        overflow-y: hidden;  /* Desativa a rolagem vertical */
+        z-index: 1000;  /* Coloca a sidebar sobre outros conteúdos */
+    }
+    
+    .sidebar h1 {
+        margin-bottom: 20px;
+        font-size: 30px;
+        color: #FF835D;
+        text-align: center;
+    }
+    
+    .sidebar hr {
+        margin: 20px 0;
+        border: 1px solid #F4F7FE;
+    }
+    
+    /* Itens padrão da sidebar */
+    .sidebar .nav-item {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+        color: #000; /* Cor padrão preta */
+        text-decoration: none;
+        transition: color 0.3s ease; /* Suaviza a transição de cor */
+    }
+    
+    /* Link dentro do item padrão */
+    .sidebar .nav-item a {
+        color: inherit; /* Herda a cor do pai */
+        font-size: 15px;
+    }
+    
+    /* Ícone no item */
+    .sidebar .nav-item i {
+        margin-right: 15px;
+        font-size: 15px;
+    }
+    
+    /* Estado ativo */
+    .sidebar .nav-item.active {
+        font-weight: bold;
+        color: #FF835D; /* Laranja para o item ativo */
+        border-right: 3px solid #FF835D; /* Borda laranja no item ativo */
+    }
+    
+    /* Hover para os itens */
+    .sidebar .nav-item:hover {
+        color: #FFA07A; /* Cor no hover */
+        border-right: 3px solid #FFA07A; /* Borda no hover */
+    }
+    
+    text-align: center;
+}
+
+.sidebar hr {
+    margin: 20px 0;
+    border: 1px solid #F4F7FE;
+}
+
+/* Itens padrão da sidebar */
+.sidebar .nav-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    color: #000; /* Cor padrão preta */
+    text-decoration: none;
+
+}
+
+/* Link dentro do item padrão */
+.sidebar .nav-item a {
+    color: inherit; /* Herda a cor do pai */
+    font-size: 15px;
+}
+
+/* Ícone no item padrão */
+.sidebar .nav-item i {
+    margin-right: 15px;
+    font-size: 15px;
+}
+
+/* Estado ativo */
+.sidebar .nav-item.active {
+    font-weight: bold;
+    color: #FF835D; /* Laranja para o item ativo */
+}
+
+/* Hover para os itens */
+.sidebar .nav-item:hover {
+    color: #FFA07A; /* Cor no hover */
+}
