@@ -8,7 +8,7 @@ document.getElementById('login-form').addEventListener('submit', async function(
 
     try {
         // Faz a requisição POST para a API de autenticação
-        const response = await fetch('http://127.0.0.1:8000/api/v1/authentication/token/', {
+        const response = await fetch('https://lcapistran25.pythonanywhere.com/api/v1/authentication/token/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

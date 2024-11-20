@@ -1,7 +1,7 @@
 // Função para buscar receitas do endpoint protegido
 async function fetchRecipes() {
     const userId = localStorage.getItem("userId");
-    const recipesUrl = `http://127.0.0.1:8000/api/v1/recipes/?user_id=${userId}`;
+    const recipesUrl = `https://lcapistran25.pythonanywhere.com/api/v1/recipes/?user_id=${userId}`;
     const token = localStorage.getItem("authToken");
 
     if (!token) {
@@ -32,7 +32,7 @@ async function fetchRecipes() {
 }
 
 async function createFavoriteStatus(recipeId) {
-    const updateUrl = `http://127.0.0.1:8000/api/v1/user-recipes/`;
+    const updateUrl = `https://lcapistran25.pythonanywhere.com/api/v1/user-recipes/`;
     const token = localStorage.getItem("authToken");
     const userId = localStorage.getItem("userId");
 
@@ -65,7 +65,7 @@ async function createFavoriteStatus(recipeId) {
 }
 
 async function getFavoriteStatus(recipeId, userId) {
-    const updateUrl = `http://127.0.0.1:8000/api/v1/user-recipes/?user_id=${userId}&recipe_id=${recipeId}`;
+    const updateUrl = `https://lcapistran25.pythonanywhere.com/api/v1/user-recipes/?user_id=${userId}&recipe_id=${recipeId}`;
     const token = localStorage.getItem("authToken");
 
     if (!token) {
@@ -101,7 +101,7 @@ async function getFavoriteStatus(recipeId, userId) {
 }
     
 async function deleteFavoriteStatus(recipeUserId) {
-    const deleteUrl = `http://127.0.0.1:8000/api/v1/user-recipes/${recipeUserId}/`;
+    const deleteUrl = `https://lcapistran25.pythonanywhere.com/api/v1/user-recipes/${recipeUserId}/`;
     const token = localStorage.getItem("authToken");
 
     if (!token) {
