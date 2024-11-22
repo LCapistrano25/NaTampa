@@ -290,6 +290,26 @@ function closeModal() {
     document.getElementById("recipe-container").classList.add("hidden");
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("search");
+    const recipesContainer = document.getElementById("recipes-container");
+
+    // Adiciona o evento de entrada (input) ao campo de pesquisa
+    searchInput.addEventListener("input", () => {
+        const filter = searchInput.value.toLowerCase();
+        const recipeCards = recipesContainer.querySelectorAll(".recipe-card");
+
+        recipeCards.forEach(card => {
+            const recipeName = card.querySelector("h2").textContent.toLowerCase();
+            if (recipeName.includes(filter)) {
+                card.style.display = "block"; // Mostra os cards que correspondem à pesquisa
+            } else {
+                card.style.display = "none"; // Esconde os cards que não correspondem
+            }
+        });
+    });
+});
+
 
 // Chama a função para buscar receitas ao carregar a página
 document.addEventListener("DOMContentLoaded", fetchRecipes);
