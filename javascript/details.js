@@ -1,70 +1,77 @@
-// Função para abrir o modal e carregar os dados
-function openModal(recipe) {
-    document.getElementById("recipe-title").textContent = recipe.name;
-    document.getElementById("recipe-image").src = recipe.image;
-    document.getElementById("recipe-description").textContent = recipe.description;
-    document.getElementById("recipe-category").textContent = recipe.name_category;
-    document.getElementById("recipe-origin").textContent = recipe.name_origin;
+// Função para obter uma receita pelo ID e atualizar o HTML
+async function fetchRecipeById(recipeId) {
+    try {
+      // URL base da API
+      const apiUrl = `https://lcapistran25.pythonanywhere.com/api/v1/recipes/${recipeId}`;
+      
+      // Fazendo a requisição para a API
+      const response = await fetch(apiUrl);
+      
+      // Verificando se a requisição foi bem-sucedida
+      if (!response.ok) {
+        throw new Error('Erro ao buscar a receita');
+      }
+      
+      // Convertendo a resposta para JSON
+      const recipe = await response.json();
+      
+      // Atualizando o HTML com os dados da receita
+      document.getElementById('recipe-title').textContent = recipe.name || 'Título não disponível';
+      document.getElementById('recipe-image').src = recipe.image || '';
+      document.querySelector('.recipe-description').textContent = recipe.description || 'Descrição não disponível';
+      document.getElementById('recipe-category').textContent = recipe.name_category || 'Categoria não disponível';
+      document.getElementById('recipe-origin').textContent = recipe.name_country || 'Origem não disponível';
+      
+      // Preenchendo os ingredientes
+      const ingredientsList = document.getElementById('recipe-ingredients');
+      ingredientsList.innerHTML = '';
+      if (recipe.ingredients) {
+        recipe.ingredients.split('\r\n').forEach(ingredient => {
+          const li = document.createElement('li');
+          li.textContent = ingredient;
+          ingredientsList.appendChild(li);
+        });
+      } else {
+        ingredientsList.innerHTML = '<li>Ingredientes não disponíveis</li>';
+      }
+      
+      // Preenchendo os passos do preparo
+      const stepsList = document.getElementById('recipe-steps');
+      stepsList.innerHTML = '';
+      if (recipe.preparation) {
+        recipe.preparation.split('\r\n\r\n').forEach(step => {
+          const li = document.createElement('li');
+          li.textContent = step;
+          stepsList.appendChild(li);
+        });
+      } else {
+        stepsList.innerHTML = '<li>Modo de preparo não disponível</li>';
+      }
   
-    const ingredientsList = document.getElementById("recipe-ingredients");
-    ingredientsList.innerHTML = "";
-    recipe.ingredients.forEach((ingredient) => {
-      const li = document.createElement("li");
-      li.textContent = ingredient;
-      ingredientsList.appendChild(li);
-    });
+      // Exibindo o modal da receita
+      document.getElementById('recipe-container').classList.remove('hidden');
   
-    const stepsList = document.getElementById("recipe-steps");
-    stepsList.innerHTML = "";
-    recipe.steps.forEach((step) => {
-      const li = document.createElement("li");
-      li.textContent = step;
-      stepsList.appendChild(li);
-    });
-  
-    document.getElementById("recipe-container").classList.remove("hidden");
+    } catch (error) {
+      console.error('Erro:', error);
+    }
   }
   
   // Função para fechar o modal
   function closeModal() {
-    document.getElementById("recipe-container").classList.add("hidden");
+    document.getElementById('recipe-container').classList.add('hidden');
   }
   
-  // Função para buscar dados da API
-async function fetchRecipe() {
-    try {
-      // Substitua a URL abaixo pela URL real da sua API
-      const token = localStorage.getItem("authToken");
-      const recipeId = localStorage.getItem("recipeId");
-      if (!token) {
-          throw new Error("Token de autenticação não encontrado.");
-      }
-      const response = await fetch(`http://localhost:8000/api/v1/recipes/1`, // Corrigido a interpolação da URL
-        {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-Type": "application/json", 
-            }
-        }
-      );
+  // Extraindo o ID da receita da query string da URL
+  function getRecipeIdFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('id');
+  }
   
-      // Verifica se a resposta foi bem-sucedida
-      if (!response.ok) {
-        throw new Error("Erro ao buscar dados da API.");
-      }
-      
-      // Converte a resposta para JSON
-      const recipe = await response.json();
-  
-      // Chama a função para abrir o modal com os dados
-      openModal(recipe);
-    } catch (error) {
-      console.error("Erro ao carregar a receita:", error);
-      alert("Não foi possível carregar os dados da receita.");
+  // Inicializar a página ao carregar
+  document.addEventListener('DOMContentLoaded', () => {
+    const recipeId = getRecipeIdFromUrl();
+    if (recipeId) {
+      fetchRecipeById(recipeId);
     }
-  }
-  
-  // Chama a função para buscar os dados da API
-  fetchRecipe();
+  });
   
