@@ -59,6 +59,7 @@ async function fetchRecipeById(recipeId) {
   // Função para fechar o modal
   function closeModal() {
     document.getElementById('recipe-container').classList.add('hidden');
+    window.history.back();
   }
   
   // Extraindo o ID da receita da query string da URL
