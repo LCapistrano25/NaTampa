@@ -182,25 +182,26 @@ function renderRecipes(data) {
         const heartIconClass = recipe.favorite ? "fas" : "far";
 
         card.innerHTML = `
-            <div class="recipe-header">
-                <h2>${recipe.name}</h2>
-                <button class="heart-button" onclick="toggleHeart(this, ${recipe.id})">
-                    <i class="${heartIconClass} fa-heart"></i>
-                </button>
-            </div>
-            <hr/>
-            <div class="description-container">
-                <img src="${imageUrl}" alt="${recipe.name}">
-                <div>
-                    <h3><strong>Descrição</strong></h3>
-                    <p>${recipe.description}</p>
-                    <div class="recipe-footer">
-                        <p class="origins"><em>Origem: ${recipe.origin || "Desconhecida"}</em></p>
-                        <button class="view-more-button" onclick="openRecipeDetails(event)">Ver mais</button>
-                    </div>
+        <div class="recipe-header">
+            <h2>${recipe.name}</h2>
+            <button class="heart-button" onclick="toggleHeart(this, ${recipe.id})">
+                <i class="${heartIconClass} fa-heart"></i>
+            </button>
+        </div>
+        <hr/>
+        <div class="description-container">
+            <img src="${imageUrl}" alt="${recipe.name}">
+            <div>
+                <h3><strong>Descrição</strong></h3>
+                <p>${recipe.description}</p>
+                <div class="recipe-footer">
+                    <p class="origins"><em>Origem: ${recipe.origin || "Desconhecida"}</em></p>
+                    <button class="view-more-button" onclick="openRecipeDetails(${recipe.id})">Ver mais</button>
                 </div>
             </div>
+        </div>
         `;
+
 
         card.setAttribute("data-recipe-id", recipe.id);
 
@@ -209,10 +210,9 @@ function renderRecipes(data) {
 }
 
 // Função chamada quando um card de receita é clicado
-function openRecipeDetails(event) {
-    const recipeId = event.currentTarget.getAttribute("data-recipe-id"); // Pega o ID do card clicado
-    localStorage.setItem("recipeId", recipeId); // Armazena o ID da receita no localStorage para recuperação posterior
-    fetchRecipe(); // Chama a função para buscar e abrir o modal com os dados da receita
+function openRecipeDetails(recipeId) {
+    // Redireciona o usuário para a página de detalhes, passando o ID da receita na URL
+    window.location.href = `http://127.0.0.1:3000/html/details.html?id=${recipeId}`;
 }
 
 // Função para abrir o modal e carregar os dados
@@ -289,26 +289,6 @@ async function fetchRecipe() {
 function closeModal() {
     document.getElementById("recipe-container").classList.add("hidden");
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-    const searchInput = document.getElementById("search");
-    const recipesContainer = document.getElementById("recipes-container");
-
-    // Adiciona o evento de entrada (input) ao campo de pesquisa
-    searchInput.addEventListener("input", () => {
-        const filter = searchInput.value.toLowerCase();
-        const recipeCards = recipesContainer.querySelectorAll(".recipe-card");
-
-        recipeCards.forEach(card => {
-            const recipeName = card.querySelector("h2").textContent.toLowerCase();
-            if (recipeName.includes(filter)) {
-                card.style.display = "block"; // Mostra os cards que correspondem à pesquisa
-            } else {
-                card.style.display = "none"; // Esconde os cards que não correspondem
-            }
-        });
-    });
-});
 
 
 // Chama a função para buscar receitas ao carregar a página
